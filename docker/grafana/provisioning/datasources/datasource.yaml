@@ -1,0 +1,11 @@
+apiVersion: 1
+
+datasources:
+  - name: InfluxDB
+    type: influxdb
+    access: direct
+    url: http://localhost:8086
+    database: rum_data
+    user: admin
+    password: adminadmin
+    isDefault: true
