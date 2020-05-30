@@ -1,0 +1,7 @@
+server:
+    port: '4000'
+db:
+    name: 'rum_data'
+    url: 'http://localhost:8086'
+    user: 'user'
+    password: 'useruser'

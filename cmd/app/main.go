@@ -2,10 +2,12 @@ package main
 
 import (
 	"fmt"
+	"os"
+
+	"github.com/christian298/metrics-aggegator/config"
 	"github.com/christian298/metrics-aggegator/db"
 	"github.com/christian298/metrics-aggegator/server"
 	"github.com/gorilla/mux"
-	"os"
 )
 
 func main() {
@@ -16,11 +18,13 @@ func main() {
 }
 
 func run() error {
+	config := config.ReadConfig()
+
 	r := mux.NewRouter()
 
 	srv := server.New()
 
-	influxDB, err := db.New()
+	influxDB, err := db.New(&config)
 
 	if err != nil {
 		return fmt.Errorf("error creating DB: %w", err)
@@ -28,6 +32,7 @@ func run() error {
 
 	srv.Router = r
 	srv.Db = influxDB
+	srv.Config = &config
 
 	srv.StartServer()
 
