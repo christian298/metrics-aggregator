@@ -29,6 +29,7 @@ func run() error {
 	if err != nil {
 		return fmt.Errorf("error creating DB: %w", err)
 	}
+	defer influxDB.Client.Close()
 
 	srv.Router = r
 	srv.Db = influxDB
