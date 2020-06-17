@@ -1,4 +1,4 @@
-.PHONY: build run dc-up
+.PHONY: build run dc-up dc-down
 
 DOCKERDIR = docker
 
