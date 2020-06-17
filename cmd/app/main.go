@@ -18,13 +18,13 @@ func main() {
 }
 
 func run() error {
-	config := config.ReadConfig()
+	conf := config.ReadConfig()
 
 	r := mux.NewRouter()
 
 	srv := server.New()
 
-	influxDB, err := db.New(&config)
+	influxDB, err := db.New(&conf)
 
 	if err != nil {
 		return fmt.Errorf("error creating DB: %w", err)
@@ -33,7 +33,7 @@ func run() error {
 
 	srv.Router = r
 	srv.Db = influxDB
-	srv.Config = &config
+	srv.Config = &conf
 
 	srv.StartServer()
 
