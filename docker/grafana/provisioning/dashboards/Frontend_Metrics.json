@@ -7,16 +7,403 @@
                 "enable": true,
                 "hide": true,
                 "iconColor": "rgba(0, 211, 255, 1)",
+                "limit": 100,
                 "name": "Annotations & Alerts",
+                "showIn": 0,
                 "type": "dashboard"
             }
         ]
     },
     "editable": true,
     "gnetId": null,
-    "graphTooltip": 0,
+    "graphTooltip": 1,
+    "id": 1,
     "links": [],
     "panels": [
+        {
+            "datasource": null,
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {
+                        "align": null
+                    },
+                    "mappings": [
+                        {
+                            "from": "0",
+                            "id": 0,
+                            "operator": "",
+                            "text": "Good",
+                            "to": "2500",
+                            "type": 2
+                        },
+                        {
+                            "from": "2501",
+                            "id": 1,
+                            "operator": "",
+                            "text": "Needs improvment",
+                            "to": "4000",
+                            "type": 2,
+                            "value": "2.6"
+                        },
+                        {
+                            "from": "",
+                            "id": 2,
+                            "operator": "",
+                            "text": "Poor",
+                            "to": "",
+                            "type": 1,
+                            "value": "4001"
+                        }
+                    ],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "#EAB839",
+                                "value": 2501
+                            },
+                            {
+                                "color": "red",
+                                "value": 4001
+                            }
+                        ]
+                    },
+                    "unit": "ms"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 8,
+                "x": 0,
+                "y": 0
+            },
+            "id": 15,
+            "options": {
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": ["mean"],
+                    "values": false
+                },
+                "showThresholdLabels": false,
+                "showThresholdMarkers": true
+            },
+            "pluginVersion": "7.0.1",
+            "targets": [
+                {
+                    "groupBy": [
+                        {
+                            "params": ["$__interval"],
+                            "type": "time"
+                        },
+                        {
+                            "params": ["null"],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "LCP",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": ["value"],
+                                "type": "field"
+                            },
+                            {
+                                "params": ["75"],
+                                "type": "percentile"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "type",
+                            "operator": "=",
+                            "value": "Desktop"
+                        },
+                        {
+                            "condition": "OR",
+                            "key": "type",
+                            "operator": "=",
+                            "value": "Mobile"
+                        }
+                    ]
+                }
+            ],
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "LCP",
+            "transformations": [
+                {
+                    "id": "seriesToColumns",
+                    "options": {}
+                }
+            ],
+            "type": "gauge"
+        },
+        {
+            "datasource": null,
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {
+                        "align": null
+                    },
+                    "mappings": [
+                        {
+                            "from": "0",
+                            "id": 0,
+                            "operator": "",
+                            "text": "Good",
+                            "to": "100",
+                            "type": 2
+                        },
+                        {
+                            "from": "101",
+                            "id": 1,
+                            "operator": "",
+                            "text": "Needs improvment",
+                            "to": "300",
+                            "type": 2,
+                            "value": "2.6"
+                        },
+                        {
+                            "from": "",
+                            "id": 2,
+                            "operator": "",
+                            "text": "Poor",
+                            "to": "",
+                            "type": 1,
+                            "value": "301"
+                        }
+                    ],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "#EAB839",
+                                "value": 101
+                            },
+                            {
+                                "color": "red",
+                                "value": 301
+                            }
+                        ]
+                    },
+                    "unit": "ms"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 8,
+                "x": 8,
+                "y": 0
+            },
+            "id": 16,
+            "options": {
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": ["mean"],
+                    "values": false
+                },
+                "showThresholdLabels": false,
+                "showThresholdMarkers": true
+            },
+            "pluginVersion": "7.0.1",
+            "targets": [
+                {
+                    "groupBy": [
+                        {
+                            "params": ["$__interval"],
+                            "type": "time"
+                        },
+                        {
+                            "params": ["null"],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "FID",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": ["value"],
+                                "type": "field"
+                            },
+                            {
+                                "params": ["75"],
+                                "type": "percentile"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "type",
+                            "operator": "=",
+                            "value": "Desktop"
+                        },
+                        {
+                            "condition": "OR",
+                            "key": "type",
+                            "operator": "=",
+                            "value": "Mobile"
+                        }
+                    ]
+                }
+            ],
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "FID",
+            "transformations": [
+                {
+                    "id": "seriesToColumns",
+                    "options": {}
+                }
+            ],
+            "type": "gauge"
+        },
+        {
+            "datasource": null,
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {
+                        "align": null
+                    },
+                    "mappings": [
+                        {
+                            "from": "0",
+                            "id": 0,
+                            "operator": "",
+                            "text": "Good",
+                            "to": "0.1",
+                            "type": 2
+                        },
+                        {
+                            "from": "0.11",
+                            "id": 1,
+                            "operator": "",
+                            "text": "Needs improvment",
+                            "to": "0.25",
+                            "type": 2,
+                            "value": "2.6"
+                        },
+                        {
+                            "from": "",
+                            "id": 2,
+                            "operator": "",
+                            "text": "Poor",
+                            "to": "",
+                            "type": 1,
+                            "value": "0.26"
+                        }
+                    ],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "#EAB839",
+                                "value": 0.11
+                            },
+                            {
+                                "color": "red",
+                                "value": 0.251
+                            }
+                        ]
+                    },
+                    "unit": "short"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 8,
+                "x": 16,
+                "y": 0
+            },
+            "id": 17,
+            "options": {
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": ["mean"],
+                    "values": false
+                },
+                "showThresholdLabels": false,
+                "showThresholdMarkers": true
+            },
+            "pluginVersion": "7.0.1",
+            "targets": [
+                {
+                    "groupBy": [
+                        {
+                            "params": ["$__interval"],
+                            "type": "time"
+                        },
+                        {
+                            "params": ["null"],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "CLS",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": ["value"],
+                                "type": "field"
+                            },
+                            {
+                                "params": ["75"],
+                                "type": "percentile"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "type",
+                            "operator": "=",
+                            "value": "Desktop"
+                        },
+                        {
+                            "condition": "OR",
+                            "key": "type",
+                            "operator": "=",
+                            "value": "Mobile"
+                        }
+                    ]
+                }
+            ],
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "CLS",
+            "transformations": [
+                {
+                    "id": "seriesToColumns",
+                    "options": {}
+                }
+            ],
+            "type": "gauge"
+        },
         {
             "collapsed": false,
             "datasource": null,
@@ -24,7 +411,7 @@
                 "h": 1,
                 "w": 24,
                 "x": 0,
-                "y": 0
+                "y": 8
             },
             "id": 7,
             "panels": [],
@@ -37,6 +424,7 @@
             "dashLength": 10,
             "dashes": false,
             "datasource": null,
+            "description": "",
             "fieldConfig": {
                 "defaults": {
                     "custom": {}
@@ -49,19 +437,20 @@
                 "h": 8,
                 "w": 12,
                 "x": 0,
-                "y": 1
+                "y": 9
             },
             "hiddenSeries": false,
             "id": 5,
             "legend": {
+                "alignAsTable": true,
                 "avg": false,
-                "current": false,
+                "current": true,
                 "max": false,
                 "min": false,
-                "rightSide": false,
+                "rightSide": true,
                 "show": true,
                 "total": false,
-                "values": false
+                "values": true
             },
             "lines": true,
             "linewidth": 1,
@@ -70,7 +459,7 @@
                 "dataLinks": []
             },
             "percentage": false,
-            "pointradius": 2,
+            "pointradius": 1,
             "points": true,
             "renderer": "flot",
             "seriesOverrides": [],
@@ -79,11 +468,15 @@
             "steppedLine": false,
             "targets": [
                 {
-                    "alias": "Chrome p75",
+                    "alias": "$tag_browser",
                     "groupBy": [
                         {
                             "params": ["$__interval"],
                             "type": "time"
+                        },
+                        {
+                            "params": ["browser"],
+                            "type": "tag"
                         },
                         {
                             "params": ["null"],
@@ -116,11 +509,15 @@
                     ]
                 },
                 {
-                    "alias": "Chrome p99",
+                    "alias": "$tag_browser",
                     "groupBy": [
                         {
                             "params": ["$__interval"],
                             "type": "time"
+                        },
+                        {
+                            "params": ["browser"],
+                            "type": "tag"
                         },
                         {
                             "params": ["null"],
@@ -130,6 +527,8 @@
                     "measurement": "LCP",
                     "orderByTime": "ASC",
                     "policy": "default",
+                    "query": "SELECT percentile(\"value\", 75) FROM \"LCP\" WHERE (\"browser\" = 'Firefox') AND $timeFilter GROUP BY time($__interval),  fill(null)",
+                    "rawQuery": false,
                     "refId": "B",
                     "resultFormat": "time_series",
                     "select": [
@@ -139,7 +538,7 @@
                                 "type": "field"
                             },
                             {
-                                "params": ["99"],
+                                "params": ["75"],
                                 "type": "percentile"
                             }
                         ]
@@ -148,16 +547,97 @@
                         {
                             "key": "browser",
                             "operator": "=",
-                            "value": "Chrome"
+                            "value": "Firefox"
+                        }
+                    ]
+                },
+                {
+                    "alias": "$tag_browser",
+                    "groupBy": [
+                        {
+                            "params": ["$__interval"],
+                            "type": "time"
+                        },
+                        {
+                            "params": ["browser"],
+                            "type": "tag"
+                        },
+                        {
+                            "params": ["null"],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "LCP",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "C",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": ["value"],
+                                "type": "field"
+                            },
+                            {
+                                "params": ["75"],
+                                "type": "percentile"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "browser",
+                            "operator": "=",
+                            "value": "Safari"
+                        }
+                    ]
+                },
+                {
+                    "alias": "$tag_browser",
+                    "groupBy": [
+                        {
+                            "params": ["$__interval"],
+                            "type": "time"
+                        },
+                        {
+                            "params": ["browser"],
+                            "type": "tag"
+                        },
+                        {
+                            "params": ["null"],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "LCP",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "D",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": ["value"],
+                                "type": "field"
+                            },
+                            {
+                                "params": ["75"],
+                                "type": "percentile"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "browser",
+                            "operator": "=",
+                            "value": "Edge"
                         }
                     ]
                 }
             ],
             "thresholds": [
                 {
-                    "$$hashKey": "object:1675",
                     "colorMode": "critical",
-                    "fill": false,
+                    "fill": true,
                     "line": true,
                     "op": "gt",
                     "value": 2500,
@@ -167,7 +647,7 @@
             "timeFrom": null,
             "timeRegions": [],
             "timeShift": null,
-            "title": "LCP",
+            "title": "LCP p75",
             "tooltip": {
                 "shared": true,
                 "sort": 0,
@@ -183,7 +663,6 @@
             },
             "yaxes": [
                 {
-                    "$$hashKey": "object:590",
                     "format": "ms",
                     "label": null,
                     "logBase": 1,
@@ -192,7 +671,6 @@
                     "show": true
                 },
                 {
-                    "$$hashKey": "object:591",
                     "decimals": null,
                     "format": "Misc",
                     "label": "",
@@ -222,15 +700,14 @@
             "fill": 1,
             "fillGradient": 0,
             "gridPos": {
-                "h": 9,
+                "h": 8,
                 "w": 12,
                 "x": 12,
-                "y": 1
+                "y": 9
             },
             "hiddenSeries": false,
-            "id": 3,
+            "id": 13,
             "legend": {
-                "alignAsTable": false,
                 "avg": false,
                 "current": false,
                 "max": false,
@@ -246,7 +723,221 @@
                 "dataLinks": []
             },
             "percentage": false,
-            "pointradius": 2,
+            "pointradius": 1,
+            "points": true,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+                {
+                    "alias": "LCP All",
+                    "groupBy": [
+                        {
+                            "params": ["$__interval"],
+                            "type": "time"
+                        },
+                        {
+                            "params": ["null"],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "LCP",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT percentile(\"value\", 75) FROM \"LCP\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+                    "rawQuery": false,
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": ["value"],
+                                "type": "field"
+                            },
+                            {
+                                "params": ["75"],
+                                "type": "percentile"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "type",
+                            "operator": "=",
+                            "value": "Desktop"
+                        },
+                        {
+                            "condition": "OR",
+                            "key": "type",
+                            "operator": "=",
+                            "value": "Mobile"
+                        }
+                    ]
+                },
+                {
+                    "alias": "LCP Desktop",
+                    "groupBy": [
+                        {
+                            "params": ["$__interval"],
+                            "type": "time"
+                        },
+                        {
+                            "params": ["null"],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "LCP",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT percentile(\"value\", 75) FROM \"LCP\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+                    "rawQuery": false,
+                    "refId": "B",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": ["value"],
+                                "type": "field"
+                            },
+                            {
+                                "params": ["75"],
+                                "type": "percentile"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "type",
+                            "operator": "=",
+                            "value": "Desktop"
+                        }
+                    ]
+                },
+                {
+                    "alias": "LCP Mobile",
+                    "groupBy": [
+                        {
+                            "params": ["$__interval"],
+                            "type": "time"
+                        },
+                        {
+                            "params": ["null"],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "LCP",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT percentile(\"value\", 75) FROM \"LCP\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+                    "rawQuery": false,
+                    "refId": "C",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": ["value"],
+                                "type": "field"
+                            },
+                            {
+                                "params": ["75"],
+                                "type": "percentile"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "type",
+                            "operator": "=",
+                            "value": "Mobile"
+                        }
+                    ]
+                }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "LCP per device type",
+            "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [
+                {
+                    "format": "ms",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                },
+                {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                }
+            ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+        },
+        {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": null,
+            "description": "",
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {}
+                },
+                "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 8,
+                "w": 12,
+                "x": 0,
+                "y": 17
+            },
+            "hiddenSeries": false,
+            "id": 11,
+            "legend": {
+                "alignAsTable": true,
+                "avg": false,
+                "current": true,
+                "max": false,
+                "min": false,
+                "rightSide": true,
+                "show": true,
+                "total": false,
+                "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+                "dataLinks": []
+            },
+            "percentage": false,
+            "pointradius": 1,
             "points": true,
             "renderer": "flot",
             "seriesOverrides": [],
@@ -270,7 +961,7 @@
                             "type": "fill"
                         }
                     ],
-                    "measurement": "TTFB",
+                    "measurement": "FID",
                     "orderByTime": "ASC",
                     "policy": "default",
                     "refId": "A",
@@ -282,7 +973,7 @@
                                 "type": "field"
                             },
                             {
-                                "params": [95],
+                                "params": ["75"],
                                 "type": "percentile"
                             }
                         ]
@@ -311,7 +1002,7 @@
                             "type": "fill"
                         }
                     ],
-                    "measurement": "TTFB",
+                    "measurement": "FID",
                     "orderByTime": "ASC",
                     "policy": "default",
                     "refId": "B",
@@ -323,7 +1014,48 @@
                                 "type": "field"
                             },
                             {
-                                "params": [95],
+                                "params": ["75"],
+                                "type": "percentile"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "browser",
+                            "operator": "=",
+                            "value": "Edge"
+                        }
+                    ]
+                },
+                {
+                    "alias": "$tag_browser",
+                    "groupBy": [
+                        {
+                            "params": ["$__interval"],
+                            "type": "time"
+                        },
+                        {
+                            "params": ["browser"],
+                            "type": "tag"
+                        },
+                        {
+                            "params": ["null"],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "FID",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "C",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": ["value"],
+                                "type": "field"
+                            },
+                            {
+                                "params": ["75"],
                                 "type": "percentile"
                             }
                         ]
@@ -335,22 +1067,63 @@
                             "value": "Firefox"
                         }
                     ]
+                },
+                {
+                    "alias": "$tag_browser",
+                    "groupBy": [
+                        {
+                            "params": ["$__interval"],
+                            "type": "time"
+                        },
+                        {
+                            "params": ["browser"],
+                            "type": "tag"
+                        },
+                        {
+                            "params": ["null"],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "FID",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "D",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": ["value"],
+                                "type": "field"
+                            },
+                            {
+                                "params": ["75"],
+                                "type": "percentile"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "browser",
+                            "operator": "=",
+                            "value": "Safari"
+                        }
+                    ]
                 }
             ],
             "thresholds": [
                 {
                     "colorMode": "critical",
-                    "fill": false,
+                    "fill": true,
                     "line": true,
                     "op": "gt",
-                    "value": 250,
+                    "value": 100,
                     "yaxis": "left"
                 }
             ],
             "timeFrom": null,
             "timeRegions": [],
             "timeShift": null,
-            "title": "TTFB",
+            "title": "FID p75",
             "tooltip": {
                 "shared": true,
                 "sort": 0,
@@ -366,7 +1139,6 @@
             },
             "yaxes": [
                 {
-                    "$$hashKey": "object:483",
                     "format": "ms",
                     "label": null,
                     "logBase": 1,
@@ -375,13 +1147,12 @@
                     "show": true
                 },
                 {
-                    "$$hashKey": "object:484",
                     "format": "short",
                     "label": null,
                     "logBase": 1,
                     "max": null,
                     "min": null,
-                    "show": false
+                    "show": true
                 }
             ],
             "yaxis": {
@@ -406,20 +1177,21 @@
             "gridPos": {
                 "h": 9,
                 "w": 12,
-                "x": 0,
-                "y": 9
+                "x": 12,
+                "y": 17
             },
             "hiddenSeries": false,
             "id": 2,
             "legend": {
-                "alignAsTable": false,
+                "alignAsTable": true,
                 "avg": false,
-                "current": false,
+                "current": true,
                 "max": false,
                 "min": false,
+                "rightSide": true,
                 "show": true,
                 "total": false,
-                "values": false
+                "values": true
             },
             "lines": true,
             "linewidth": 1,
@@ -428,12 +1200,12 @@
                 "dataLinks": []
             },
             "percentage": false,
-            "pointradius": 2,
+            "pointradius": 1,
             "points": true,
             "renderer": "flot",
             "seriesOverrides": [],
             "spaceLength": 10,
-            "stack": true,
+            "stack": false,
             "steppedLine": false,
             "targets": [
                 {
@@ -464,7 +1236,7 @@
                                 "type": "field"
                             },
                             {
-                                "params": [95],
+                                "params": ["75"],
                                 "type": "percentile"
                             }
                         ]
@@ -476,15 +1248,147 @@
                             "value": "Chrome"
                         }
                     ]
+                },
+                {
+                    "alias": "$tag_browser",
+                    "groupBy": [
+                        {
+                            "params": ["$__interval"],
+                            "type": "time"
+                        },
+                        {
+                            "params": ["browser"],
+                            "type": "tag"
+                        },
+                        {
+                            "params": ["null"],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "FCP",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "B",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": ["value"],
+                                "type": "field"
+                            },
+                            {
+                                "params": ["75"],
+                                "type": "percentile"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "browser",
+                            "operator": "=",
+                            "value": "Edge"
+                        }
+                    ]
+                },
+                {
+                    "alias": "$tag_browser",
+                    "groupBy": [
+                        {
+                            "params": ["$__interval"],
+                            "type": "time"
+                        },
+                        {
+                            "params": ["browser"],
+                            "type": "tag"
+                        },
+                        {
+                            "params": ["null"],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "FCP",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "C",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": ["value"],
+                                "type": "field"
+                            },
+                            {
+                                "params": ["75"],
+                                "type": "percentile"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "browser",
+                            "operator": "=",
+                            "value": "Firefox"
+                        }
+                    ]
+                },
+                {
+                    "alias": "$tag_browser",
+                    "groupBy": [
+                        {
+                            "params": ["$__interval"],
+                            "type": "time"
+                        },
+                        {
+                            "params": ["browser"],
+                            "type": "tag"
+                        },
+                        {
+                            "params": ["null"],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "FCP",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "D",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": ["value"],
+                                "type": "field"
+                            },
+                            {
+                                "params": ["75"],
+                                "type": "percentile"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "browser",
+                            "operator": "=",
+                            "value": "Safari"
+                        }
+                    ]
                 }
             ],
-            "thresholds": [],
+            "thresholds": [
+                {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 1000,
+                    "yaxis": "left"
+                }
+            ],
             "timeFrom": null,
             "timeRegions": [],
             "timeShift": null,
-            "title": "FCP",
+            "title": "FCP p75",
             "tooltip": {
-                "shared": false,
+                "shared": true,
                 "sort": 0,
                 "value_type": "individual"
             },
@@ -498,7 +1402,6 @@
             },
             "yaxes": [
                 {
-                    "$$hashKey": "object:266",
                     "format": "ms",
                     "label": null,
                     "logBase": 1,
@@ -507,7 +1410,6 @@
                     "show": true
                 },
                 {
-                    "$$hashKey": "object:267",
                     "format": "short",
                     "label": null,
                     "logBase": 1,
@@ -538,19 +1440,21 @@
             "gridPos": {
                 "h": 8,
                 "w": 12,
-                "x": 12,
-                "y": 10
+                "x": 0,
+                "y": 25
             },
             "hiddenSeries": false,
             "id": 9,
             "legend": {
+                "alignAsTable": true,
                 "avg": false,
-                "current": false,
+                "current": true,
                 "max": false,
                 "min": false,
+                "rightSide": true,
                 "show": true,
                 "total": false,
-                "values": false
+                "values": true
             },
             "lines": true,
             "linewidth": 1,
@@ -559,7 +1463,7 @@
                 "dataLinks": []
             },
             "percentage": false,
-            "pointradius": 2,
+            "pointradius": 1,
             "points": true,
             "renderer": "flot",
             "seriesOverrides": [],
@@ -568,11 +1472,15 @@
             "steppedLine": false,
             "targets": [
                 {
-                    "alias": "Chrome",
+                    "alias": "$tag_browser",
                     "groupBy": [
                         {
                             "params": ["$__interval"],
                             "type": "time"
+                        },
+                        {
+                            "params": ["browser"],
+                            "type": "tag"
                         },
                         {
                             "params": ["null"],
@@ -591,7 +1499,7 @@
                                 "type": "field"
                             },
                             {
-                                "params": [95],
+                                "params": ["75"],
                                 "type": "percentile"
                             }
                         ]
@@ -605,11 +1513,15 @@
                     ]
                 },
                 {
-                    "alias": "Firefox",
+                    "alias": "$tag_browser",
                     "groupBy": [
                         {
                             "params": ["$__interval"],
                             "type": "time"
+                        },
+                        {
+                            "params": ["browser"],
+                            "type": "tag"
                         },
                         {
                             "params": ["null"],
@@ -628,7 +1540,7 @@
                                 "type": "field"
                             },
                             {
-                                "params": [95],
+                                "params": ["75"],
                                 "type": "percentile"
                             }
                         ]
@@ -640,13 +1552,104 @@
                             "value": "Firefox"
                         }
                     ]
+                },
+                {
+                    "alias": "$tag_browser",
+                    "groupBy": [
+                        {
+                            "params": ["$__interval"],
+                            "type": "time"
+                        },
+                        {
+                            "params": ["browser"],
+                            "type": "tag"
+                        },
+                        {
+                            "params": ["null"],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "CLS",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "C",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": ["value"],
+                                "type": "field"
+                            },
+                            {
+                                "params": ["75"],
+                                "type": "percentile"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "browser",
+                            "operator": "=",
+                            "value": "Edge"
+                        }
+                    ]
+                },
+                {
+                    "alias": "$tag_browser",
+                    "groupBy": [
+                        {
+                            "params": ["$__interval"],
+                            "type": "time"
+                        },
+                        {
+                            "params": ["browser"],
+                            "type": "tag"
+                        },
+                        {
+                            "params": ["null"],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "CLS",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "D",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": ["value"],
+                                "type": "field"
+                            },
+                            {
+                                "params": ["75"],
+                                "type": "percentile"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "browser",
+                            "operator": "=",
+                            "value": "Safari"
+                        }
+                    ]
                 }
             ],
-            "thresholds": [],
+            "thresholds": [
+                {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 0.1,
+                    "yaxis": "left"
+                }
+            ],
             "timeFrom": null,
             "timeRegions": [],
             "timeShift": null,
-            "title": "CLS",
+            "title": "CLS p75",
             "tooltip": {
                 "shared": true,
                 "sort": 0,
@@ -662,7 +1665,6 @@
             },
             "yaxes": [
                 {
-                    "$$hashKey": "object:823",
                     "format": "short",
                     "label": null,
                     "logBase": 1,
@@ -671,7 +1673,6 @@
                     "show": true
                 },
                 {
-                    "$$hashKey": "object:824",
                     "format": "short",
                     "label": null,
                     "logBase": 1,
@@ -700,21 +1701,23 @@
             "fill": 1,
             "fillGradient": 0,
             "gridPos": {
-                "h": 8,
+                "h": 9,
                 "w": 12,
-                "x": 0,
-                "y": 18
+                "x": 12,
+                "y": 26
             },
             "hiddenSeries": false,
-            "id": 11,
+            "id": 3,
             "legend": {
+                "alignAsTable": true,
                 "avg": false,
-                "current": false,
+                "current": true,
                 "max": false,
                 "min": false,
+                "rightSide": true,
                 "show": true,
                 "total": false,
-                "values": false
+                "values": true
             },
             "lines": true,
             "linewidth": 1,
@@ -723,7 +1726,7 @@
                 "dataLinks": []
             },
             "percentage": false,
-            "pointradius": 2,
+            "pointradius": 1,
             "points": true,
             "renderer": "flot",
             "seriesOverrides": [],
@@ -732,18 +1735,22 @@
             "steppedLine": false,
             "targets": [
                 {
-                    "alias": "Chrome",
+                    "alias": "$tag_browser",
                     "groupBy": [
                         {
                             "params": ["$__interval"],
                             "type": "time"
                         },
                         {
+                            "params": ["browser"],
+                            "type": "tag"
+                        },
+                        {
                             "params": ["null"],
                             "type": "fill"
                         }
                     ],
-                    "measurement": "FID",
+                    "measurement": "TTFB",
                     "orderByTime": "ASC",
                     "policy": "default",
                     "refId": "A",
@@ -767,13 +1774,145 @@
                             "value": "Chrome"
                         }
                     ]
+                },
+                {
+                    "alias": "$tag_browser",
+                    "groupBy": [
+                        {
+                            "params": ["$__interval"],
+                            "type": "time"
+                        },
+                        {
+                            "params": ["browser"],
+                            "type": "tag"
+                        },
+                        {
+                            "params": ["null"],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "TTFB",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "B",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": ["value"],
+                                "type": "field"
+                            },
+                            {
+                                "params": [95],
+                                "type": "percentile"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "browser",
+                            "operator": "=",
+                            "value": "Firefox"
+                        }
+                    ]
+                },
+                {
+                    "alias": "$tag_browser",
+                    "groupBy": [
+                        {
+                            "params": ["$__interval"],
+                            "type": "time"
+                        },
+                        {
+                            "params": ["browser"],
+                            "type": "tag"
+                        },
+                        {
+                            "params": ["null"],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "TTFB",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "C",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": ["value"],
+                                "type": "field"
+                            },
+                            {
+                                "params": [95],
+                                "type": "percentile"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "browser",
+                            "operator": "=",
+                            "value": "Safari"
+                        }
+                    ]
+                },
+                {
+                    "alias": "$tag_browser",
+                    "groupBy": [
+                        {
+                            "params": ["$__interval"],
+                            "type": "time"
+                        },
+                        {
+                            "params": ["browser"],
+                            "type": "tag"
+                        },
+                        {
+                            "params": ["null"],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "TTFB",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "D",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": ["value"],
+                                "type": "field"
+                            },
+                            {
+                                "params": [95],
+                                "type": "percentile"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "browser",
+                            "operator": "=",
+                            "value": "Edge"
+                        }
+                    ]
                 }
             ],
-            "thresholds": [],
+            "thresholds": [
+                {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 200,
+                    "yaxis": "left"
+                }
+            ],
             "timeFrom": null,
             "timeRegions": [],
             "timeShift": null,
-            "title": "FID",
+            "title": "TTFB p95",
             "tooltip": {
                 "shared": true,
                 "sort": 0,
@@ -789,8 +1928,7 @@
             },
             "yaxes": [
                 {
-                    "$$hashKey": "object:1507",
-                    "format": "short",
+                    "format": "ms",
                     "label": null,
                     "logBase": 1,
                     "max": null,
@@ -798,13 +1936,12 @@
                     "show": true
                 },
                 {
-                    "$$hashKey": "object:1508",
                     "format": "short",
                     "label": null,
                     "logBase": 1,
                     "max": null,
                     "min": null,
-                    "show": true
+                    "show": false
                 }
             ],
             "yaxis": {
@@ -821,12 +1958,11 @@
         "list": []
     },
     "time": {
-        "from": "now-3h",
+        "from": "now-1h",
         "to": "now"
     },
     "timepicker": {
         "refresh_intervals": [
-            "5s",
             "10s",
             "30s",
             "1m",
@@ -841,5 +1977,5 @@
     "timezone": "",
     "title": "Frontend Metrics",
     "uid": "p8wZk2_Zz",
-    "version": 5
+    "version": 42
 }
