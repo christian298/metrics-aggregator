@@ -13,7 +13,10 @@ func (s *Server) handleMetrics() http.HandlerFunc {
 	var perfMetrics models.Metric
 
 	return func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "localhost")
+		if s.Config.Environment == "dev" {
+			w.Header().Set("Access-Control-Allow-Origin", "*")
+		}
+
 		if r.Method == http.MethodOptions {
 			return
 		}
