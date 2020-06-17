@@ -1,17 +1,21 @@
-FROM golang:1.14.0-alpine AS builder
+FROM golang:1.14.4-alpine AS builder
 
-RUN apk update && apk add --no-cache git
-
-WORKDIR $GOPATH/src/mypackage/myapp/
-COPY .. .
+WORKDIR /app
+COPY . .
 
 RUN go mod download
 RUN go mod verify
 
-RUN GOOS=linux GOARCH=amd64 go build -o /go/bin/metrics-aggregator ./cmd/app/main.go
+RUN GOOS=linux GOARCH=amd64 go build -o metrics-aggregator ./cmd/app/main.go
 
-FROM scratch
 
-COPY --from=builder /go/bin/metrics-aggregator /go/bin/metrics-aggregator
+FROM alpine:latest
 
-ENTRYPOINT ["/go/bin/metrics-aggregator"]
+RUN apk --no-cache add ca-certificates
+WORKDIR /root/
+
+EXPOSE 4000
+
+COPY --from=builder /app/metrics-aggregator .
+
+ENTRYPOINT ["./metrics-aggregator"]
