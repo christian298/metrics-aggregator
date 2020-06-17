@@ -2,13 +2,14 @@ package config
 
 import (
 	"fmt"
-
 	"github.com/spf13/viper"
+	"strings"
 )
 
 type Config struct {
-	Server ServerConfig
-	Db     DbConfig
+	Environment string
+	Server      ServerConfig
+	Db          DbConfig
 }
 
 type ServerConfig struct {
@@ -25,8 +26,10 @@ type DbConfig struct {
 func ReadConfig() Config {
 	viper.SetConfigName("config")
 	viper.AddConfigPath(".")
-	viper.AutomaticEnv()
 	viper.SetConfigType("yaml")
+	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_", "-", "_"))
+	viper.AllowEmptyEnv(true)
+	viper.AutomaticEnv()
 
 	var config Config
 
@@ -39,6 +42,8 @@ func ReadConfig() Config {
 	if err != nil {
 		fmt.Printf("Error decoding config file")
 	}
+
+	fmt.Println(config)
 
 	return config
 }
